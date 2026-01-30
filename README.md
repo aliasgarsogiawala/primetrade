@@ -11,12 +11,35 @@ A Python CLI application for placing orders on Binance Futures Testnet (USDT-M).
 - Clean error handling for API and network failures
 - **Interactive CLI mode** with menus, prompts, and colored output
 
+## Quick Start
+
+```bash
+# 1. Clone and setup
+git clone https://github.com/aliasgarsogiawala/primetrade.git
+cd primetrade
+
+# 2. Create virtual environment
+python3 -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Configure API keys
+cp .env.example .env
+# Edit .env with your Binance Testnet API keys
+
+# 5. Run
+python interactive.py        # Interactive mode
+python cli.py --help         # Command line mode
+```
+
 ## Setup
 
 ### 1. Clone the repository
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/aliasgarsogiawala/primetrade.git
 cd primetrade
 ```
 
@@ -94,7 +117,7 @@ For scripting or quick orders, use the standard CLI:
 #### Place a Market Order
 
 ```bash
-python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
+python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.002
 ```
 
 Output:
@@ -105,7 +128,7 @@ ORDER REQUEST
 Symbol:       BTCUSDT
 Side:         BUY
 Type:         MARKET
-Quantity:     0.001
+Quantity:     0.002
 ==================================================
 
 Connecting to Binance Testnet...
@@ -115,30 +138,29 @@ Placing order...
 ==================================================
 ORDER EXECUTED SUCCESSFULLY
 ==================================================
-Order ID:     4397283641
+Order ID:     12040222728
 Symbol:       BTCUSDT
 Side:         BUY
 Type:         MARKET
-Status:       FILLED
-Quantity:     0.001
-Executed:     0.001
-Avg Price:    104523.50
+Status:       NEW
+Quantity:     0.002
+Executed:     0.000
 ==================================================
 ```
 
-### Place a Limit Order
+#### Place a Limit Order
 
 ```bash
-python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.001 --price 110000
+python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.002 --price 120000
 ```
 
-### Short Form Arguments
+#### Short Form Arguments
 
 ```bash
 python cli.py -s ETHUSDT --side BUY -t MARKET -q 0.01
 ```
 
-### Arguments
+### CLI Arguments
 
 | Argument | Short | Required | Description |
 |----------|-------|----------|-------------|
@@ -152,19 +174,43 @@ python cli.py -s ETHUSDT --side BUY -t MARKET -q 0.01
 
 ```
 primetrade/
-    bot/
-        __init__.py
-        client.py         # Binance API client wrapper
-        orders.py         # Order placement logic
-        validators.py     # Input validation
-        logging_config.py # Logging setup
-        utils.py          # Utility functions
-    cli.py                # Command-line interface
-    interactive.py        # Interactive menu interface
-    logs/                 # Log files directory
-    README.md
-    requirements.txt
+├── bot/
+│   ├── __init__.py         # Package exports
+│   ├── client.py           # Binance API client wrapper
+│   ├── orders.py           # Order placement logic
+│   ├── validators.py       # Input validation
+│   ├── logging_config.py   # Logging setup
+│   └── utils.py            # Utility functions
+├── deliverable_logs/       # Sample execution logs
+│   ├── market_order.log    # Market order log
+│   └── limit_order.log     # Limit order log
+├── logs/                   # Runtime logs
+│   └── trading_bot.log     # Main log file
+├── cli.py                  # Command-line interface
+├── interactive.py          # Interactive menu interface
+├── .env.example            # Environment template
+├── .gitignore
+├── README.md
+└── requirements.txt
 ```
+
+## Deliverables
+
+### Log Files
+
+Sample execution logs are in `deliverable_logs/`:
+
+| File | Description |
+|------|-------------|
+| `market_order.log` | Successful MARKET BUY order (Order ID: 12040222728) |
+| `limit_order.log` | Successful LIMIT SELL order (Order ID: 12040222994) |
+
+### What's Logged
+
+- API request details (endpoint, params)
+- API response data (order ID, status)
+- Error messages with codes
+- Timestamps for all operations
 
 ## Logging
 
@@ -172,39 +218,60 @@ All API requests, responses, and errors are logged to `logs/trading_bot.log`.
 
 Log format:
 ```
-2026-01-30 13:45:22 | INFO     | trading_bot.cli | Starting trading bot
-2026-01-30 13:45:22 | DEBUG    | trading_bot.client | Request: POST /fapi/v1/order
+2026-01-30 17:28:42 | INFO     | trading_bot.cli | Starting trading bot
+2026-01-30 17:28:42 | DEBUG    | trading_bot.client | Request: POST /fapi/v1/order
+2026-01-30 17:28:42 | INFO     | trading_bot.orders | Order placed successfully: 12040222728
 ```
 
-Sample log files are included in `logs/` directory:
-- `market_order_example.log` - Example market order execution
-- `limit_order_example.log` - Example limit order execution
+Log levels:
+- **DEBUG**: API requests/responses (detailed)
+- **INFO**: Order status, connections
+- **ERROR**: Failures and exceptions
 
 ## Error Handling
 
 The bot handles various error conditions:
 
-- **Validation errors**: Invalid symbol, side, order type, or quantity
-- **API errors**: Insufficient balance, invalid API key, rate limits
-- **Network errors**: Connection timeouts, DNS failures
+| Error Type | Example | Handling |
+|------------|---------|----------|
+| Validation | Invalid symbol | Clear error message before API call |
+| API Error | Insufficient margin | Error code + message from Binance |
+| Network | Connection timeout | Retry suggestion + logged |
 
 Example error output:
 ```
-Order Failed: Margin is insufficient.
+==================================================
+ORDER FAILED
+==================================================
+Code:  -4016
+Error: Limit price can't be higher than 86856.21.
+==================================================
 ```
+
+## Validation
+
+Input validation includes:
+
+- **Symbol**: Must end with USDT (e.g., BTCUSDT)
+- **Side**: Must be BUY or SELL
+- **Order Type**: Must be MARKET or LIMIT
+- **Quantity**: Must be positive number
+- **Price**: Required for LIMIT orders, must be positive
 
 ## Assumptions
 
 - Using Binance Futures Testnet (USDT-M) only
-- Minimum order quantities follow Binance testnet rules (e.g., 0.001 BTC)
+- Minimum order value is $100 (Binance requirement)
 - Network connectivity is available
-- API credentials are valid and have futures trading permissions
+- API credentials have futures trading permissions
 - Default time-in-force for LIMIT orders is GTC (Good Till Cancelled)
 
 ## Dependencies
 
-- python-dotenv: Environment variable management
-- requests: HTTP client for API calls
+| Package | Version | Purpose |
+|---------|---------|---------|
+| python-dotenv | 1.0.0 | Environment variable management |
+| requests | 2.31.0 | HTTP client for API calls |
 
 ## Testing with Testnet
 
@@ -213,3 +280,16 @@ Order Failed: Margin is insufficient.
 3. Generate API keys in account settings
 4. Add keys to `.env` file
 5. Run orders against testnet (no real money involved)
+
+## Bonus Feature: Interactive CLI
+
+The interactive mode (`python interactive.py`) provides:
+
+- Color-coded output (green=success, red=error, yellow=prompts)
+- ASCII art banner
+- Menu-driven navigation
+- Order confirmation prompts
+- Input shortcuts (B for BUY, S for SELL)
+- Helpful tips for limit order pricing
+- Account balance viewer
+- Price checker

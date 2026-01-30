@@ -1,0 +1,20 @@
+# LIMIT ORDER LOG
+# Command: python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.002 --price 120000
+# Result: SUCCESS
+# Order ID: 12040222994
+
+2026-01-30 17:28:46 | INFO     | trading_bot.cli | Starting trading bot
+2026-01-30 17:28:46 | INFO     | trading_bot.cli | Order params: symbol=BTCUSDT, side=SELL, type=LIMIT, qty=0.002, price=120000.0
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Request: GET /fapi/v1/time
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Params: {}
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Response data: {'serverTime': 1769774326372}
+2026-01-30 17:28:46 | INFO     | trading_bot.cli | API connection established
+2026-01-30 17:28:46 | INFO     | trading_bot.orders | Order request: {'symbol': 'BTCUSDT', 'side': 'SELL', 'order_type': 'LIMIT', 'quantity': 0.002, 'price': 120000.0}
+2026-01-30 17:28:46 | INFO     | trading_bot.client | Placing LIMIT SELL order for 0.002 BTCUSDT
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Request: POST /fapi/v1/order
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Params: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.002, 'price': 120000.0, 'timeInForce': 'GTC', 'timestamp': 1769774326425, 'signature': '***'}
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Response data: {'orderId': 12040222994, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'qYejzGd2V55pihD3fCkRf0', 'price': '120000.00', 'avgPrice': '0.00', 'origQty': '0.002', 'executedQty': '0.000', 'cumQty': '0.000', 'cumQuote': '0.00000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1769774326533}
+2026-01-30 17:28:46 | INFO     | trading_bot.orders | Order placed successfully: 12040222994
+2026-01-30 17:28:46 | INFO     | trading_bot.cli | Order completed successfully

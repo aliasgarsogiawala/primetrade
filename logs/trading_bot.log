@@ -88,3 +88,57 @@
 2026-01-30 13:42:57 | ERROR    | trading_bot.client | API error: -4016 - Limit price can't be higher than 86856.21.
 2026-01-30 13:42:57 | ERROR    | trading_bot.orders | Order failed: API Error -4016: Limit price can't be higher than 86856.21.
 2026-01-30 13:42:57 | ERROR    | trading_bot.cli | Order failed: Limit price can't be higher than 86856.21.
+2026-01-30 17:25:39 | DEBUG    | trading_bot.client | Request: GET /fapi/v1/time
+2026-01-30 17:25:39 | DEBUG    | trading_bot.client | Params: {}
+2026-01-30 17:25:39 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 17:25:39 | DEBUG    | trading_bot.client | Response data: {'serverTime': 1769774139930}
+2026-01-30 17:25:39 | INFO     | trading_bot.interactive | Interactive CLI started
+2026-01-30 17:25:39 | DEBUG    | trading_bot.client | Request: GET /fapi/v1/ticker/price
+2026-01-30 17:25:39 | DEBUG    | trading_bot.client | Params: {'symbol': 'BTCUSDT'}
+2026-01-30 17:25:40 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 17:25:40 | DEBUG    | trading_bot.client | Response data: {'symbol': 'BTCUSDT', 'price': '83192.30', 'time': 1769774133200}
+2026-01-30 17:25:40 | ERROR    | trading_bot.interactive | Fatal error in interactive CLI
+Traceback (most recent call last):
+  File "/Users/Asus/Desktop/primetrade/interactive.py", line 353, in main
+    choice = input(colored("  Select option: ", Colors.BOLD)).strip()
+EOFError: EOF when reading a line
+2026-01-30 17:26:24 | DEBUG    | trading_bot.client | Request: GET /fapi/v1/time
+2026-01-30 17:26:24 | DEBUG    | trading_bot.client | Params: {}
+2026-01-30 17:26:25 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 17:26:25 | DEBUG    | trading_bot.client | Response data: {'serverTime': 1769774185132}
+2026-01-30 17:26:25 | INFO     | trading_bot.interactive | Interactive CLI started
+2026-01-30 17:26:40 | DEBUG    | trading_bot.client | Request: GET /fapi/v1/time
+2026-01-30 17:26:40 | DEBUG    | trading_bot.client | Params: {}
+2026-01-30 17:26:40 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 17:26:40 | DEBUG    | trading_bot.client | Response data: {'serverTime': 1769774200169}
+2026-01-30 17:26:40 | INFO     | trading_bot.interactive | Interactive CLI started
+2026-01-30 17:28:42 | INFO     | trading_bot.cli | Starting trading bot
+2026-01-30 17:28:42 | INFO     | trading_bot.cli | Order params: symbol=BTCUSDT, side=BUY, type=MARKET, qty=0.002, price=None
+2026-01-30 17:28:42 | DEBUG    | trading_bot.client | Request: GET /fapi/v1/time
+2026-01-30 17:28:42 | DEBUG    | trading_bot.client | Params: {}
+2026-01-30 17:28:42 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 17:28:42 | DEBUG    | trading_bot.client | Response data: {'serverTime': 1769774322341}
+2026-01-30 17:28:42 | INFO     | trading_bot.cli | API connection established
+2026-01-30 17:28:42 | INFO     | trading_bot.orders | Order request: {'symbol': 'BTCUSDT', 'side': 'BUY', 'order_type': 'MARKET', 'quantity': 0.002, 'price': None}
+2026-01-30 17:28:42 | INFO     | trading_bot.client | Placing MARKET BUY order for 0.002 BTCUSDT
+2026-01-30 17:28:42 | DEBUG    | trading_bot.client | Request: POST /fapi/v1/order
+2026-01-30 17:28:42 | DEBUG    | trading_bot.client | Params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.002, 'timestamp': 1769774322382, 'signature': '***'}
+2026-01-30 17:28:42 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 17:28:42 | DEBUG    | trading_bot.client | Response data: {'orderId': 12040222728, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'QrJzwNGnWrEfPHfg2qltys', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.002', 'executedQty': '0.000', 'cumQty': '0.000', 'cumQuote': '0.00000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1769774322485}
+2026-01-30 17:28:42 | INFO     | trading_bot.orders | Order placed successfully: 12040222728
+2026-01-30 17:28:42 | INFO     | trading_bot.cli | Order completed successfully
+2026-01-30 17:28:46 | INFO     | trading_bot.cli | Starting trading bot
+2026-01-30 17:28:46 | INFO     | trading_bot.cli | Order params: symbol=BTCUSDT, side=SELL, type=LIMIT, qty=0.002, price=120000.0
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Request: GET /fapi/v1/time
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Params: {}
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Response data: {'serverTime': 1769774326372}
+2026-01-30 17:28:46 | INFO     | trading_bot.cli | API connection established
+2026-01-30 17:28:46 | INFO     | trading_bot.orders | Order request: {'symbol': 'BTCUSDT', 'side': 'SELL', 'order_type': 'LIMIT', 'quantity': 0.002, 'price': 120000.0}
+2026-01-30 17:28:46 | INFO     | trading_bot.client | Placing LIMIT SELL order for 0.002 BTCUSDT
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Request: POST /fapi/v1/order
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Params: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.002, 'price': 120000.0, 'timeInForce': 'GTC', 'timestamp': 1769774326425, 'signature': '***'}
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 17:28:46 | DEBUG    | trading_bot.client | Response data: {'orderId': 12040222994, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'qYejzGd2V55pihD3fCkRf0', 'price': '120000.00', 'avgPrice': '0.00', 'origQty': '0.002', 'executedQty': '0.000', 'cumQty': '0.000', 'cumQuote': '0.00000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1769774326533}
+2026-01-30 17:28:46 | INFO     | trading_bot.orders | Order placed successfully: 12040222994
+2026-01-30 17:28:46 | INFO     | trading_bot.cli | Order completed successfully
