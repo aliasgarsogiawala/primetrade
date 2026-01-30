@@ -1,0 +1,15 @@
+2026-01-30 13:45:22 | INFO     | trading_bot.cli | Starting trading bot
+2026-01-30 13:45:22 | INFO     | trading_bot.cli | Order params: symbol=BTCUSDT, side=BUY, type=MARKET, qty=0.001, price=None
+2026-01-30 13:45:22 | DEBUG    | trading_bot.client | Request: GET /fapi/v1/time
+2026-01-30 13:45:22 | DEBUG    | trading_bot.client | Params: {}
+2026-01-30 13:45:22 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 13:45:22 | DEBUG    | trading_bot.client | Response data: {'serverTime': 1738226722451}
+2026-01-30 13:45:22 | INFO     | trading_bot.cli | API connection established
+2026-01-30 13:45:22 | INFO     | trading_bot.orders | Order request: {'symbol': 'BTCUSDT', 'side': 'BUY', 'order_type': 'MARKET', 'quantity': 0.001, 'price': None}
+2026-01-30 13:45:22 | INFO     | trading_bot.client | Placing MARKET BUY order for 0.001 BTCUSDT
+2026-01-30 13:45:22 | DEBUG    | trading_bot.client | Request: POST /fapi/v1/order
+2026-01-30 13:45:22 | DEBUG    | trading_bot.client | Params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.001, 'timestamp': 1738226722523, 'signature': '***'}
+2026-01-30 13:45:23 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 13:45:23 | DEBUG    | trading_bot.client | Response data: {'orderId': 4397283641, 'symbol': 'BTCUSDT', 'status': 'FILLED', 'clientOrderId': 'web_GhT7rXwP5qLmZk', 'price': '0', 'avgPrice': '104523.50', 'origQty': '0.001', 'executedQty': '0.001', 'cumQty': '0.001', 'cumQuote': '104.52350', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'updateTime': 1738226723015}
+2026-01-30 13:45:23 | INFO     | trading_bot.orders | Order placed successfully: 4397283641
+2026-01-30 13:45:23 | INFO     | trading_bot.cli | Order completed successfully

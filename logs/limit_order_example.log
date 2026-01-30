@@ -1,0 +1,15 @@
+2026-01-30 13:48:15 | INFO     | trading_bot.cli | Starting trading bot
+2026-01-30 13:48:15 | INFO     | trading_bot.cli | Order params: symbol=BTCUSDT, side=SELL, type=LIMIT, qty=0.001, price=110000.0
+2026-01-30 13:48:15 | DEBUG    | trading_bot.client | Request: GET /fapi/v1/time
+2026-01-30 13:48:15 | DEBUG    | trading_bot.client | Params: {}
+2026-01-30 13:48:15 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 13:48:15 | DEBUG    | trading_bot.client | Response data: {'serverTime': 1738226895312}
+2026-01-30 13:48:15 | INFO     | trading_bot.cli | API connection established
+2026-01-30 13:48:15 | INFO     | trading_bot.orders | Order request: {'symbol': 'BTCUSDT', 'side': 'SELL', 'order_type': 'LIMIT', 'quantity': 0.001, 'price': 110000.0}
+2026-01-30 13:48:15 | INFO     | trading_bot.client | Placing LIMIT SELL order for 0.001 BTCUSDT
+2026-01-30 13:48:15 | DEBUG    | trading_bot.client | Request: POST /fapi/v1/order
+2026-01-30 13:48:15 | DEBUG    | trading_bot.client | Params: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.001, 'price': 110000.0, 'timeInForce': 'GTC', 'timestamp': 1738226895387, 'signature': '***'}
+2026-01-30 13:48:16 | DEBUG    | trading_bot.client | Response status: 200
+2026-01-30 13:48:16 | DEBUG    | trading_bot.client | Response data: {'orderId': 4397284892, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'web_KpM9sVwQ2rNyBx', 'price': '110000.00', 'avgPrice': '0.00', 'origQty': '0.001', 'executedQty': '0', 'cumQty': '0', 'cumQuote': '0', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'updateTime': 1738226896124}
+2026-01-30 13:48:16 | INFO     | trading_bot.orders | Order placed successfully: 4397284892
+2026-01-30 13:48:16 | INFO     | trading_bot.cli | Order completed successfully
