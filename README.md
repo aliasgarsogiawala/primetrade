@@ -9,6 +9,7 @@ A Python CLI application for placing orders on Binance Futures Testnet (USDT-M).
 - Input validation
 - Structured logging to file
 - Clean error handling for API and network failures
+- **Interactive CLI mode** with menus, prompts, and colored output
 
 ## Setup
 
@@ -51,7 +52,46 @@ Get your testnet credentials from: https://testnet.binancefuture.com
 
 ## Usage
 
-### Place a Market Order
+### Interactive Mode (Recommended)
+
+Launch the interactive menu-driven interface:
+
+```bash
+python interactive.py
+```
+
+Features:
+- Visual menu system
+- Guided prompts for order placement
+- Order confirmation before execution
+- Colored output for better readability
+- View open orders
+- Check account balance
+- Get current prices
+
+Screenshot:
+```
+    ╔══════════════════════════════════════════════════════╗
+    ║         Futures Testnet Trading Bot                  ║
+    ╚══════════════════════════════════════════════════════╝
+
+  ══════════════════════════════════════════════════
+    MAIN MENU
+  ══════════════════════════════════════════════════
+    [1] Place Market Order
+    [2] Place Limit Order
+    [3] View Open Orders
+    [4] Check Account Balance
+    [5] Get Current Price
+    [0] Exit
+  ══════════════════════════════════════════════════
+```
+
+### Command Line Mode
+
+For scripting or quick orders, use the standard CLI:
+
+#### Place a Market Order
 
 ```bash
 python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
@@ -119,7 +159,8 @@ primetrade/
         validators.py     # Input validation
         logging_config.py # Logging setup
         utils.py          # Utility functions
-    cli.py                # CLI entry point
+    cli.py                # Command-line interface
+    interactive.py        # Interactive menu interface
     logs/                 # Log files directory
     README.md
     requirements.txt
