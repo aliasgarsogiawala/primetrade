@@ -99,7 +99,16 @@ class OrderManager:
     def get_order_summary(self, order_result):
         """Generate human-readable order summary."""
         if not order_result.get('success'):
-            return f"Order Failed: {order_result.get('error')}"
+            error_lines = [
+                "=" * 50,
+                "ORDER FAILED",
+                "=" * 50,
+                f"Error: {order_result.get('error')}",
+            ]
+            if order_result.get('error_code'):
+                error_lines.insert(3, f"Code:  {order_result.get('error_code')}")
+            error_lines.append("=" * 50)
+            return "\n".join(error_lines)
         
         lines = [
             "=" * 50,

@@ -26,6 +26,9 @@ class BinanceClient:
     BASE_URL = "https://testnet.binancefuture.com"
     
     def __init__(self, api_key, api_secret):
+        if not api_key or not api_secret:
+            raise ValueError("API key and secret are required")
+        
         self.api_key = api_key
         self.api_secret = api_secret
         self.logger = get_logger('client')
@@ -85,7 +88,11 @@ class BinanceClient:
             
             self.logger.debug(f"Response status: {response.status_code}")
             
-            data = response.json()
+            try:
+                data = response.json()
+            except ValueError as e:
+                self.logger.error(f"Invalid JSON response: {e}")
+                raise BinanceAPIError(response.status_code, 'INVALID_JSON', 'Invalid JSON response from server')
             
             if response.status_code != 200:
                 error_code = data.get('code', 'UNKNOWN')
